@@ -19,3 +19,7 @@ console.log(jobconf.outputPath);
 
 JobConf.reducer = mapper;
 JobConf.reducer.map(f);
+
+var Reducer = require('../mapjs').Reducer;
+var reducer = new Reducer();
+reducer.reduce(f);
