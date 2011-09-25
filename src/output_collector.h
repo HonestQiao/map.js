@@ -5,10 +5,14 @@
 #include <node.h>
 #include <map>
 #include <string>
+#include "mapjs.h"
 
 using namespace v8;
 using namespace node;
 using namespace std;
+using namespace mapjs;
+
+namespace mapjs {
 
 typedef std::multimap<std::string, std::string> OutputCollectorMap;
 
@@ -26,15 +30,10 @@ public:
     static Handle<Value> Collect(const Arguments& args);
     static Handle<Value> Values(const Arguments& args);
 
-    static std::string V8StringToStdString(Local<Value> value) {
-        char c[1024];
-        Local<String> s = value->ToString();
-        s->WriteAscii((char*)&c);
-        return std::string(c);
-    }
-
 private:
     OutputCollectorMap* _map;
 };
+
+} // namespace mapjs
 
 #endif // output_collector_h

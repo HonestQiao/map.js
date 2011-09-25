@@ -1,20 +1,21 @@
 var f = function(key, value, outputCollector, reporter) {
 
-    console.log('Inside map function');
-    console.log(key + value);
+    for(var i = key; i <= 10; ++i) {
+        outputCollector.collect(key, value+i);
+    }
 };
 
 var Mapper = require('../mapjs').Mapper;
-var mapper = new Mapper();
-mapper.map(f(3,4));
+var mapper = new Mapper(f);
 
 var OutputCollector = require('../mapjs').OutputCollector;
 var outputCollector = new OutputCollector();
-outputCollector.collect(1,2);
-outputCollector.collect(1,3);
-outputCollector.collect(1,4);
+mapper.map(f(1,1, outputCollector));
 var array = outputCollector.values(1);
 console.log(array);
+
+
+
 /*
 var JobConf = require('../mapjs').JobConf;
 var jobconf = new JobConf();

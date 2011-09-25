@@ -16,7 +16,7 @@ def configure(conf):
 def build(bld):
   obj = bld.new_task_gen("cxx", "shlib", "node_addon")
   obj.target = "mapjs"
-  obj.source = "src/mapper.cc src/reducer.cc src/output_collector.cc src/job_conf.cc src/module.cc"
+  obj.source = "src/mapper.cc src/reducer.cc src/partitioner.cc src/output_collector.cc src/job_conf.cc src/module.cc"
   obj.cxxflags = ["-D_FILE_OFFSET_BITS=64", "-D_LARGEFILE_SOURCE"]
 
 def shutdown():

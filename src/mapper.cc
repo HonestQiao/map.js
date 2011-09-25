@@ -2,6 +2,7 @@
 
 using namespace v8;
 using namespace node;
+using namespace mapjs;
 
 Persistent<FunctionTemplate> Mapper::constructor_template;
 

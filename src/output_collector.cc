@@ -2,6 +2,7 @@
 
 using namespace v8;
 using namespace node;
+using namespace mapjs;
 
 Persistent<FunctionTemplate> OutputCollector::constructor_template;
 
@@ -33,8 +34,8 @@ Handle<Value> OutputCollector::Collect(const Arguments& args) {
 
     printf("Inside OutputCollector.Collect()\n");
 
-    std::string key = OutputCollector::V8StringToStdString(args[0]);
-    std::string value = OutputCollector::V8StringToStdString(args[1]);
+    std::string key = V8StringToStdString(args[0]);
+    std::string value = V8StringToStdString(args[1]);
 
     OutputCollector* outputCollector = ObjectWrap::Unwrap<OutputCollector>(args.This());
     outputCollector->_map->insert(std::pair<std::string, std::string>(key, value));
@@ -49,7 +50,7 @@ Handle<Value> OutputCollector::Values(const Arguments& args) {
 
     OutputCollector* outputCollector = ObjectWrap::Unwrap<OutputCollector>(args.This());
 
-    std::string key = OutputCollector::V8StringToStdString(args[0]);
+    std::string key = V8StringToStdString(args[0]);
     OutputCollectorMap* map = outputCollector->map();
     OutputCollectorMap::iterator itr;
     itr = map->find(key);
