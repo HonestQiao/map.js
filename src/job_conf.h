@@ -15,10 +15,12 @@ public:
     static Persistent<FunctionTemplate> constructor_template;
     static void Initialize(Handle<Object> target);
     static Handle<Value> New(const Arguments& args);
-    static Handle<Value> GetMapper(Local<String> property, const AccessorInfo& info);
-    static void SetMapper(Local<String> property, Local<Value> value, const AccessorInfo& info);
+
+    // inputPath
     static Handle<Value> GetInputPath(Local<String> property, const AccessorInfo& info);
     static void SetInputPath(Local<String> property, Local<Value> value, const AccessorInfo& info);
+
+    // outputPath
     static Handle<Value> GetOutputPath(Local<String> property, const AccessorInfo& info);
     static void SetOutputPath(Local<String> property, Local<Value> value, const AccessorInfo& info);
 

@@ -16,3 +16,6 @@ jobconf.outputPath = "output path";
 console.log(jobconf.mapper);
 console.log(jobconf.inputPath);
 console.log(jobconf.outputPath);
+
+JobConf.reducer = mapper;
+JobConf.reducer.map(f);
