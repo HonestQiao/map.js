@@ -35,13 +35,13 @@ Handle<Value> Mapper::Map(const Arguments& args) {
     HandleScope scope;
 
     printf("Inside Mapper.Map()\n");
-
+/*
     Local<Function> mapFunction = Local<Function>::Cast(args[0]);
     Local<Value> v[2];
     v[0] = Integer::New(1);
     v[1] = Integer::New(2);
     mapFunction->Call(Context::GetCurrent()->Global(), 2, v);
-
+*/
     return Undefined();
 }
 

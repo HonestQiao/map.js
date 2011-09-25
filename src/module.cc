@@ -2,6 +2,7 @@
 
 #include "mapper.h"
 #include "reducer.h"
+#include "output_collector.h"
 #include "job_conf.h"
 
 extern "C" void
@@ -9,5 +10,6 @@ init(Handle<Object> target) {
     HandleScope scope;
     Mapper::Initialize(target);
     Reducer::Initialize(target);
+    OutputCollector::Initialize(target);
     JobConf::Initialize(target);
 }
