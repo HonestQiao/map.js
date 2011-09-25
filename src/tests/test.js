@@ -1,4 +1,5 @@
-var Mapper = require('../mapper').Mapper;
+var Mapper = require('../mapjs').Mapper;
+var JobConf = require('../mapjs').JobConf;
 
 var f = function(key, value) {
 
@@ -8,3 +9,7 @@ var f = function(key, value) {
 var mapper = new Mapper();
 
 mapper.map(f);
+
+var jobconf = new JobConf();
+
+//jobconf.mapper = 3;

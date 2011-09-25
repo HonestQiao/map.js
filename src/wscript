@@ -15,14 +15,14 @@ def configure(conf):
 
 def build(bld):
   obj = bld.new_task_gen("cxx", "shlib", "node_addon")
-  obj.target = "mapper"
-  obj.source = "mapper.cc"
+  obj.target = "mapjs"
+  obj.source = "mapper.cc job_conf.cc"
   obj.cxxflags = ["-D_FILE_OFFSET_BITS=64", "-D_LARGEFILE_SOURCE"]
 
 def shutdown():
   if Options.commands['clean']:
-    if exists('mapper.node'): unlink('mapper.node')
+    if exists('mapjs.node'): unlink('mapjs.node')
   else:
-    if exists('build/default/mapper.node') and not exists('mapper.node'):
-      symlink('build/default/mapper.node', 'mapper.node')
+    if exists('build/default/mapjs.node') and not exists('mapjs.node'):
+      symlink('build/default/mapjs.node', 'mapjs.node')
 
