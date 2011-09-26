@@ -1,6 +1,6 @@
 body {
 
-    background: #646D7E;
+    background: #ffffff;
     margin: 0px;
 }
 
@@ -60,15 +60,15 @@ div#subtitle {
     left: 0px;
     font-family: monospace;
     font-size: 25px;
-    color: #413839;
+    color: #666;
 }
 
 div.decoration {
 
     width: 150px;
     height: 150px;
-    background: #E3E4FA;
-    opacity: 0.2;
+    background: #F76541;
+    opacity: 0.5;
 }
 
 div.decoration a {
@@ -78,7 +78,7 @@ div.decoration a {
     left: 50px;
     font-family: Courier;
     font-size: 100px;
-    color: #817679;
+    color: #fff;
 }
 
 div#left_decoration {
@@ -113,7 +113,7 @@ div.code_paragraph {
     font-family: Monospace;
     font-size: 16px;
     font-style: italic;
-    color: #ffffff;
+    color: #666;
 }
 
 div#p1 {
