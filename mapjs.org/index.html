@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Map.js</title>
+<link href="./stylesheets/mapjs.css" rel="stylesheet" type="text/css"/>
+<link rel="shortcut icon" href="./images/favicon.ico"/>
+
+<script type="text/javascript">
+</script>
+</head>
+<body>
+<div id="left_panel">
+    <ul class="ul_nav">
+        <li><a href="https://github.com/yanzhengli/map.js">Download</a></li>
+        <li><a href="https://github.com/yanzhengli/map.js/wiki">Wiki</a></li>
+        <li><a href="#build">Build</a></li>
+        <li><a href="#tutorial">Doc</a></li>
+    </ul>
+</div>
+<div id="main_container">
+    <div id="title_sec">
+        <div id="logo"><a href="./"><img src="./images/mapjs_logo_600x188.png"></a></img></div>
+        <div id="subtitle">MapReduce using V8 JavaScript and Node.js</div>
+    </div>
+
+    <div id="p1" class="code_paragraph">
+         /* Harnesses the prowess of V8 and 
+         the versatility of Node.js to setup MapReduce system easily
+         in JavaScript. */
+    </div>
+
+    <div id="p2" class="code_paragraph">
+         var map = require('mapjs').map;<br/>
+         var reduce = require('mapjs').reduce;<br/>
+         var JobConf = require('mapjs').jobconf;<br/>
+         var JobClient = require('mapjs').jobclient;<br/><br/>
+         var mapper = map.createMapper(function(key, value, outputCollector, reporter) { <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;// process the key/value pair. <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;outputCollector.collect(key, value); <br/>
+         }); <br/>
+         <br/>
+         var reducer = reduce.createReducer(function(key, values, outputCollector, reporter) { <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;// process the key and the list of values. <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;outputCollector.collect(key, value); <br/>
+         }); <br/><br/>
+         var jobconf = new JobConf();</br>
+         jobconf.mapper = mapper;<br/>
+         jobconf.reducer = reducer;<br/>
+         jobconf.inputPath = "./";<br/>
+         jobconf.outputPath = "./output";<br/>
+         JobClient.run(jobconf);<br/>
+    </div>
+
+    <div class="decoration" id="left_decoration"><a>M</a></div>
+    <div class="decoration" id="right_decoration"><a>R</a></div>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <div id="footer">Copyright 2011 All Rights Reserved. Yanzheng Li</div>
+</div>
+</body>
+</html>

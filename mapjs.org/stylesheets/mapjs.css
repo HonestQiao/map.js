@@ -1,0 +1,160 @@
+body {
+
+    background: #646D7E;
+    margin: 0px;
+}
+
+div#left_panel {
+
+    float: left;
+    position: fixed;
+    width: 150px;
+    padding: 20px;
+}
+
+ul.ul_nav {
+
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    border-right: 1px solid #C6DEFF;
+}
+
+ul.ul_nav li {
+
+    display: block;
+    margin: 10px;
+    font-family: Courier;
+    font-size: 16px;
+}
+
+ul.ul_nav li a {
+
+    color: #C6DEFF;
+    text-decoration: none;
+}
+
+ul.url_nav li a:hover {
+
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+div#main_container {
+
+    position: absolute;
+    left: 200px;
+}
+
+div#title_sec {
+
+    position: relative;
+    top: 10px;
+    left: 0px;
+}
+
+div#subtitle {
+
+    position: relative;
+    top: 15px;
+    left: 0px;
+    font-family: monospace;
+    font-size: 25px;
+    color: #413839;
+}
+
+div.decoration {
+
+    width: 150px;
+    height: 150px;
+    background: #E3E4FA;
+    opacity: 0.2;
+}
+
+div.decoration a {
+
+    position: relative;
+    top: 25px;
+    left: 50px;
+    font-family: Courier;
+    font-size: 100px;
+    color: #817679;
+}
+
+div#left_decoration {
+
+    position: fixed;
+    top: 300px;
+    left: 0px;
+    border-top-right-radius: 20%;
+    border-bottom-right-radius: 20%;
+}
+
+div#right_decoration {
+
+    position: fixed;
+    top: 300px;
+    right: 0px;
+    border-top-left-radius: 20%;
+    border-bottom-left-radius: 20%;
+}
+
+div.paragraph {
+
+    width: 500px;
+    font-family: Arial;
+    font-size: 18px;
+    color: #25587E;
+}
+
+div.code_paragraph {
+
+    width: 800px;
+    font-family: Monospace;
+    font-size: 16px;
+    font-style: italic;
+    color: #ffffff;
+}
+
+div#p1 {
+
+    position: relative;
+    left: 0px;
+    top: 60px;
+}
+
+div#p2 {
+
+    position: relative;
+    left: 0px;
+    top: 80px;
+}
+
+span.first_character {
+
+    font-size: 60px;
+    color: #817679;
+}
+
+div#slider-wrapper {
+
+    position: relative;
+    top: 80px;
+    left: 10px;
+}
+
+div.nivoSlider {
+
+    width: 440px;
+    height: 280px;
+}
+
+div#footer {
+
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    font-family: monospace;
+    font-size: 14px;
+    color: #413839;
+}

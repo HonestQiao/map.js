@@ -32,7 +32,9 @@ Handle<Value> Partitioner::GetPartition(const Arguments& args) {
 
     printf("Inside Partitioner.GetPartition()\n");
 
-   
+    std::string key = V8StringToStdString(args[0]);
+    std::string value = V8StringToStdString(args[1]);
+    int numPartitions = args[3]->Int32Value();
 
     return Undefined();
 }

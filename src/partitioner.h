@@ -3,9 +3,13 @@
 
 #include <v8.h>
 #include <node.h>
+#include <string>
+#include "mapjs.h"
 
 using namespace v8;
 using namespace node;
+using namespace std;
+using namespace mapjs;
 
 namespace mapjs {
 
