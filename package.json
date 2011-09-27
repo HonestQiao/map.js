@@ -1,0 +1,19 @@
+{
+  "author": "Yanzheng Li",
+  "name": "map.js",
+  "version": "0.0.1",
+  "homepage": "http://www.mapjs.org",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yanzhengli/map.js.org.git"
+  },
+  "engines": {
+    "node": "~v0.4.12"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "directories": {
+        "lib": "./lib"
+    },
+    "scripts": { "install": "node-waf configure build" }
+}

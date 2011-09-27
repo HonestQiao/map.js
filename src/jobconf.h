@@ -9,6 +9,8 @@
 using namespace v8;
 using namespace node;
 
+namespace mapjs {
+
 class JobConf : public ObjectWrap {
 
 public:
@@ -29,6 +31,6 @@ public:
     std::string _outputPath;
 };
 
-//Persistent<FunctionTemplate> JobConf::constructor_template;
+} // namespace mapjs
 
 #endif // job_conf_h

@@ -64,3 +64,14 @@ Handle<Value> OutputCollector::Values(const Arguments& args) {
     return scope.Close(array);
 }
 
+Handle<Value> OutputCollector::Join(const Arguments& args) {
+    HandleScope scope;
+
+    OutputCollector* outputCollector = ObjectWrap::Unwrap<OutputCollector>(args.This());
+    OutputCollector* outputCollector2 = ObjectWrap::Unwrap<OutputCollector>(args[0]->ToObject());
+
+    outputCollector->map()->insert(outputCollector2->map()->begin(),
+        outputCollector2->map()->end());
+
+    return Undefined();
+}

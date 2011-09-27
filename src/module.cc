@@ -4,9 +4,10 @@
 #include "reducer.h"
 #include "partitioner.h"
 #include "output_collector.h"
-#include "job_conf.h"
+#include "jobconf.h"
+#include "jobclient.h"
 
-namespace mapjs {
+using namespace mapjs;
 
 extern "C" void
 init(Handle<Object> target) {
@@ -16,6 +17,5 @@ init(Handle<Object> target) {
     Partitioner::Initialize(target);
     OutputCollector::Initialize(target);
     JobConf::Initialize(target);
+    JobClient::Initialize(target);
 }
-
-} // namespace mapjs

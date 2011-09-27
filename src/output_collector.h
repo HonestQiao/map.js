@@ -29,6 +29,7 @@ public:
     static Handle<Value> New(const Arguments& args);
     static Handle<Value> Collect(const Arguments& args);
     static Handle<Value> Values(const Arguments& args);
+    static Handle<Value> Join(const Arguments& args);
 
 private:
     OutputCollectorMap* _map;

@@ -21,11 +21,6 @@ void Reducer::Initialize(Handle<Object> target) {
 Handle<Value> Reducer::New(const Arguments& args) {
     HandleScope scope;
 
-    //Local<Function> f = Local<Function>::Cast(args[0]);
-    //mapFunction = Persistent<Function>::New(f);
-
-    //mapFunction = Persistent<Function>::Cast(args[0]);
-
     Reducer* reducer  = new Reducer();
     reducer->Wrap(args.This());
     return args.This();

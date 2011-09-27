@@ -1,8 +1,9 @@
-#include "job_conf.h"
+#include "jobconf.h"
 
 using namespace v8;
 using namespace node;
 using namespace std;
+using namespace mapjs;
 
 Persistent<FunctionTemplate> JobConf::constructor_template;
 
