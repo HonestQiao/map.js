@@ -16,9 +16,10 @@ void OutputCollector::Initialize(Handle<Object> target) {
 
     NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "collect", Collect);
     NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "values", Values);
+    NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "join", Join);
     target->Set(String::NewSymbol("OutputCollector"), OutputCollector::constructor_template->GetFunction());
     target->Set(String::New("collect"), FunctionTemplate::New(Collect)->GetFunction());
-    target->Set(String::New("values"), FunctionTemplate::New(Values)->GetFunction());
+    target->Set(String::New("join"), FunctionTemplate::New(Join)->GetFunction());
 }
 
 Handle<Value> OutputCollector::New(const Arguments& args) {
@@ -32,8 +33,6 @@ Handle<Value> OutputCollector::New(const Arguments& args) {
 Handle<Value> OutputCollector::Collect(const Arguments& args) {
     HandleScope scope;
 
-    printf("Inside OutputCollector.Collect()\n");
-
     std::string key = V8StringToStdString(args[0]);
     std::string value = V8StringToStdString(args[1]);
 
@@ -45,8 +44,6 @@ Handle<Value> OutputCollector::Collect(const Arguments& args) {
 
 Handle<Value> OutputCollector::Values(const Arguments& args) {
     HandleScope scope;
-
-    printf("Inside OutputCollector.Values()\n");
 
     OutputCollector* outputCollector = ObjectWrap::Unwrap<OutputCollector>(args.This());
 

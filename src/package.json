@@ -1,0 +1,37 @@
+{
+   "name": "mapjs",
+   "version": "0.1.0",
+   "main": "mapjs",
+   "description": "",
+   "keywords": [
+       "mapjs"
+   ],
+   "maintainers": [
+       {
+           "name": "Yanzheng Li",
+           "email": "yanzheng819@gmail.com",
+           "web": "http://www.mapjs.org"
+       } 
+   ],
+   "licenses": [
+       {
+           "type": "MIT"
+       } 
+   ],
+   "repositories": [
+       {
+           "type": "git",
+           "url": "http://github.com/pkrumins/node-png.git" 
+       } 
+   ],
+   "directories": {
+       "examples": "examples",
+       "src": "src"
+   },
+   "engines": {
+       "node": ">=0.3.0"
+   },
+   "scripts": {
+       "install": "node-waf configure build"
+   }
+}

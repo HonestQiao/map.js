@@ -22,11 +22,6 @@ void Mapper::Initialize(Handle<Object> target) {
 Handle<Value> Mapper::New(const Arguments& args) {
     HandleScope scope;
 
-    //Local<Function> f = Local<Function>::Cast(args[0]);
-    //mapFunction = Persistent<Function>::New(f);
-
-    //mapFunction = Persistent<Function>::Cast(args[0]);
-
     Mapper* mapper = new Mapper();
     mapper->Wrap(args.This());
     return args.This();
