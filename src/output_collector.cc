@@ -17,9 +17,12 @@ void OutputCollector::Initialize(Handle<Object> target) {
     NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "collect", Collect);
     NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "values", Values);
     NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "join", Join);
+    NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "keys", Keys);
     target->Set(String::NewSymbol("OutputCollector"), OutputCollector::constructor_template->GetFunction());
     target->Set(String::New("collect"), FunctionTemplate::New(Collect)->GetFunction());
+    target->Set(String::New("values"), FunctionTemplate::New(Values)->GetFunction());
     target->Set(String::New("join"), FunctionTemplate::New(Join)->GetFunction());
+    target->Set(String::New("keys"), FunctionTemplate::New(Keys)->GetFunction());
 }
 
 Handle<Value> OutputCollector::New(const Arguments& args) {
@@ -71,4 +74,25 @@ Handle<Value> OutputCollector::Join(const Arguments& args) {
         outputCollector2->map()->end());
 
     return Undefined();
+}
+
+Handle<Value> OutputCollector::Keys(const Arguments& args) {
+    HandleScope scope;
+
+    OutputCollector* outputCollector = ObjectWrap::Unwrap<OutputCollector>(args.This());
+    OutputCollectorMap* map = outputCollector->map();
+
+    Local<Array> array = Array::New();
+    int i = 0;
+    std::string lastKey= "";
+    for(OutputCollectorMap::iterator itr = map->begin(); itr != map->end(); ++itr) {
+        std::string key = (*itr).first;
+        if(lastKey != key) {
+            array->Set(Integer::New(i), String::New(key.c_str()));
+            lastKey = key;
+            ++i;
+        }
+    }
+
+    return scope.Close(array);
 }
