@@ -13,8 +13,8 @@ void OutputCollector::Initialize(Handle<Object> target) {
     OutputCollector::constructor_template = Persistent<FunctionTemplate>::New(t);
     OutputCollector::constructor_template->InstanceTemplate()->SetInternalFieldCount(1);
     OutputCollector::constructor_template->SetClassName(String::NewSymbol("OutputCollector"));
-
-    NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "collect", Collect);
+    
+    NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "collect", OutputCollector::Collect);
     NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "values", Values);
     NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "join", Join);
     NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "keys", Keys);
@@ -41,7 +41,7 @@ Handle<Value> OutputCollector::Collect(const Arguments& args) {
 
     OutputCollector* outputCollector = ObjectWrap::Unwrap<OutputCollector>(args.This());
     outputCollector->map()->insert(std::pair<std::string, std::string>(key, value));
-    
+
     return Undefined();
 }
 
@@ -96,3 +96,4 @@ Handle<Value> OutputCollector::Keys(const Arguments& args) {
 
     return scope.Close(array);
 }
+

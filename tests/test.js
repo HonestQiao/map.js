@@ -3,18 +3,19 @@ var mapjs = require('../mapjs');
 var map = require('../lib/map');
 var reduce = require('../lib/reduce');
 var input = require('../lib/input_format');
-var OutputCollector = require('../lib/output_collector').OutputCollector;
+var OutputCollector = mapjs.OutputCollector;
 var InputSplit = require('../lib/input_split').InputSplit;
 var JobConf = require('../lib/jobconf').JobConf;
 var JobClient = require('../lib/jobclient').JobClient;
+
 
 var mapper = map.createMapper(function(key, value, outputCollector, reporter) {
     outputCollector.collect(value, 1);
 });
 
-var reducer = reduce.createReducer(function(key, value, outputCollector, reporter) {
-    
-    outputCollector.collect(value, 1);
+var reducer = reduce.createReducer(function(key, values, outputCollector, reporter) {
+    console.log(key + " has occurred " + values.length.toString() + " times.");
+    //outputCollector.collect(values, 1);
 });
 
 var inputFormat = input.createInputFormat(function(fileName) {
