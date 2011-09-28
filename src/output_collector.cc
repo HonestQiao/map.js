@@ -40,7 +40,7 @@ Handle<Value> OutputCollector::Collect(const Arguments& args) {
     std::string value = V8StringToStdString(args[1]);
 
     OutputCollector* outputCollector = ObjectWrap::Unwrap<OutputCollector>(args.This());
-    outputCollector->_map->insert(std::pair<std::string, std::string>(key, value));
+    outputCollector->map()->insert(std::pair<std::string, std::string>(key, value));
     
     return Undefined();
 }
