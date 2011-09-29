@@ -17,7 +17,7 @@ ul.ul_nav {
     list-style-type: none;
     margin: 0px;
     padding: 0px;
-    border-right: 1px solid #C6DEFF;
+    border-right: 1px solid #827B60;
 }
 
 ul.ul_nav li {
@@ -30,7 +30,7 @@ ul.ul_nav li {
 
 ul.ul_nav li a {
 
-    color: #C6DEFF;
+    color: #827B60;
     text-decoration: none;
 }
 
@@ -102,37 +102,53 @@ div#right_decoration {
 div.paragraph {
 
     width: 500px;
-    font-family: Arial;
+    margin: 50px 0px 50px 0px;
+    font-family: Times New Roman;
     font-size: 18px;
     color: #25587E;
+    line-height: 150%;
+}
+
+div.paragraph a {
+
+    font-size: 18px;
+    color: #25587E;
+}
+
+div.paragraph_header {
+
+    font-family: Monospace;
+    font-size: 60px;
+    color: #666;
+    margin-top: 20px;
+    margin-bottom: -20px;
 }
 
 div.code_paragraph {
 
     width: 800px;
     font-family: Monospace;
-    font-size: 16px;
+    font-size: 14px;
     font-style: italic;
     color: #666;
+    line-height: 120%;
 }
 
-div#p1 {
+span.code_keyword {
 
-    position: relative;
-    left: 0px;
-    top: 60px;
+    color: #CA226B;
+    font-weight: bold;
 }
 
-div#p2 {
+span.code_string {
 
-    position: relative;
-    left: 0px;
-    top: 80px;
+    color: #C34A2C;
+    font-style: italic;
 }
 
-span.first_character {
+span.first_letter {
 
-    font-size: 60px;
+    font-size: 50px;
     color: #817679;
 }
 
@@ -141,12 +157,6 @@ div#slider-wrapper {
     position: relative;
     top: 80px;
     left: 10px;
-}
-
-div.nivoSlider {
-
-    width: 440px;
-    height: 280px;
 }
 
 div#footer {

@@ -12,8 +12,8 @@
     <ul class="ul_nav">
         <li><a href="https://github.com/yanzhengli/map.js">Download</a></li>
         <li><a href="https://github.com/yanzhengli/map.js/wiki">Wiki</a></li>
-        <li><a href="#build">Build</a></li>
-        <li><a href="#tutorial">Doc</a></li>
+        <li><a href="http://www.mapjs.org/#about">About</a></li>
+        <li><a href="#tutorial">Docs</a></li>
     </ul>
 </div>
 <div id="main_container">
@@ -22,32 +22,74 @@
         <div id="subtitle">MapReduce using V8 JavaScript and Node.js</div>
     </div>
 
-    <div id="p1" class="code_paragraph">
+    <div id="p1" class="paragraph code_paragraph">
          /* Harnesses the prowess of V8 and 
-         the versatility of Node.js to setup MapReduce system with ease in 
-         JavaScript. */
+         the versatility of Node.js to setup MapReduce system in JavaScript. */
     </div>
 
-    <div id="p2" class="code_paragraph">
-         var map = require('mapjs').map;<br/>
-         var reduce = require('mapjs').reduce;<br/>
-         var JobConf = require('mapjs').jobconf;<br/>
-         var JobClient = require('mapjs').jobclient;<br/><br/>
-         var mapper = map.createMapper(function(key, value, outputCollector, reporter) { <br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;// process the key/value pair. <br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;outputCollector.collect(key, value); <br/>
-         }); <br/>
-         <br/>
-         var reducer = reduce.createReducer(function(key, values, outputCollector, reporter) { <br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;// process the key and the list of values. <br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;outputCollector.collect(key, value); <br/>
-         }); <br/><br/>
-         var jobconf = new JobConf();</br>
-         jobconf.mapper = mapper;<br/>
-         jobconf.reducer = reducer;<br/>
-         jobconf.inputPath = "./";<br/>
-         jobconf.outputPath = "./output";<br/>
-         JobClient.run(jobconf);<br/>
+    <div id="p2" class="paragraph code_paragraph">
+        /* Find the number of occurrences of every word in a bunch of files. */
+        <br/>
+        <br/>
+        <span class="code_keyword">var</span> fs = require(<span class="code_string">'fs'</span>);<br/>
+        <span class="code_keyword">var</span> mapjs = require(<span class="code_string">'../mapjs'</span>);<br/>
+        <span class="code_keyword">var</span> map = require(<span class="code_string">'../lib/map'</span>); <br/>
+        <span class="code_keyword">var</span> reduce = require(<span class="code_string">'../lib/reduce'</span>); <br/>
+        <span class="code_keyword">var</span> input = require(<span class="code_string">'../lib/input'</span>); <br/>
+        <span class="code_keyword">var</span> OutputCollector = mapjs.OutputCollector; <br/>
+        <span class="code_keyword">var</span> JobConf = require(<span class="code_string">'../lib/jobconf'</span>).JobConf;<br/>
+        <span class="code_keyword">var</span> JobClient = require(<span class="code_string">'../lib/jobclient'</span>).JobClient;<br/>
+        <span class="code_keyword">var</span> InputSplit = input.InputSplit;<br/>
+        <br/>
+        <span class="code_keyword">var</span> mapper = map.createMapper(<span class="code_keyword">function</span>(key, value, outputCollector, reporter) {<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;outputCollector.collect(key, 1); // here we mark every word we encounter.<br/>
+        });<br/>
+
+        <span class="code_keyword">var</span> reducer = reduce.createReducer(<span class="code_keyword">function</span>(key, values, outputCollector, reporter) {<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(key + <span class="code_string">" has occurred "</span> + values.<span class="code_keyword">length</span>.toString() +
+        <span class="code_string">" times."</span>);<br/>
+        });<br/>
+        <br/>
+        <span class="code_keyword">var</span> inputFormat = input.createInputFormat(<span class="code_keyword">function</span>(fileName) {<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code_keyword">var</span> inputSplits = [];<br/>
+        <br/>
+            <span class="code_keyword">var</span> data = fs.readFileSync(fileName, <span class="code_string">'ascii'</span>);<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;if(data) {<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_keyword">var</span> chunks = data.toString().split(<span class="code_string">
+                ' '</span>);<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(<span class="code_keyword">var</span> i = 0; i < chunks.length; ++i) {<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inputSplits.push(<span class="code_keyword">new</span> InputSplit(chunks[i]));<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+            }<br/>
+        <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code_keyword">return</span> inputSplits;<br/>
+        });<br/>
+        <br/>
+        <span class="code_keyword">var</span> jobconf = <span class="code_keyword">new</span> JobConf();<br/>
+        <span class="code_keyword">var</span> jobclient = <span class="code_keyword">new</span> JobClient();<br/>
+        jobconf.mapper = mapper;<br/>
+        jobconf.reducer = reducer;<br/>
+        jobconf.inputFormat = inputFormat;<br/>
+        jobconf.inputPath = <span class="code_string">"./tests/data/input/"</span>;<br/>
+        jobconf.outputPath = <span class="code_string">"./tests/data/output/"</span>;<br/>
+        jobclient.run(jobconf);<br/>
+    </div>
+
+    <div id="p3" class="paragraph"><a name="about"></a>
+        <span class="first_letter">M</span>ap.js is a MapReduce framework in JavaScript
+        based on <a href="http://code.google.com/p/v8/">V8 JavaScript Engine</a>
+        and <a href="http://nodejs.org/">Node.js</a>. The goal
+        is to provide an easy solution for developers to build any MapReduce system
+        easily using nothing but JavaScript. Map.js uses Node.js as the underlying framework
+        to achieve functionalities that are not present in the language, and V8 as the
+        underlying JavaScript engine for additional functionalities needed within the framework.
+        <br/>
+        <br/>
+        The interfaces and inner workings of the Map.js greatly resembles those
+        other popular MapReduce frameworks such as Hadoop. This introduces the least amount
+        of learning curves for people to get started with the framework.
+        <br/>
+        
     </div>
 
     <div class="decoration" id="left_decoration"><a>M</a></div>
