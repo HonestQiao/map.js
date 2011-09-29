@@ -9,7 +9,7 @@ var JobClient = require('../lib/jobclient').JobClient;
 var InputSplit = input.InputSplit;
 
 var mapper = map.createMapper(function(key, value, outputCollector, reporter) {
-    outputCollector.collect(key, 1); // here we mark every work we encounter.
+    outputCollector.collect(key, 1); // here we mark every word we encounter.
 });
 
 var reducer = reduce.createReducer(function(key, values, outputCollector, reporter) {
