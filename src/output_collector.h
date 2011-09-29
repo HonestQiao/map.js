@@ -31,7 +31,8 @@ public:
     static Handle<Value> Values(const Arguments& args);
     static Handle<Value> Join(const Arguments& args);
     static Handle<Value> Keys(const Arguments& args);
-
+    static Handle<Value> Size(const Arguments& args);
+    static Handle<Value> ToArray(const Arguments& args);
 private:
     OutputCollectorMap* _map;
 };

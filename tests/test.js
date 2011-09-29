@@ -2,20 +2,18 @@ var fs = require('fs');
 var mapjs = require('../mapjs');
 var map = require('../lib/map');
 var reduce = require('../lib/reduce');
-var input = require('../lib/input_format');
+var input = require('../lib/input');
 var OutputCollector = mapjs.OutputCollector;
-var InputSplit = require('../lib/input_split').InputSplit;
 var JobConf = require('../lib/jobconf').JobConf;
 var JobClient = require('../lib/jobclient').JobClient;
-
+var InputSplit = input.InputSplit;
 
 var mapper = map.createMapper(function(key, value, outputCollector, reporter) {
-    outputCollector.collect(value, 1);
+    outputCollector.collect(key, 1); // here we mark every work we encounter.
 });
 
 var reducer = reduce.createReducer(function(key, values, outputCollector, reporter) {
     console.log(key + " has occurred " + values.length.toString() + " times.");
-    //outputCollector.collect(values, 1);
 });
 
 var inputFormat = input.createInputFormat(function(fileName) {
@@ -23,9 +21,9 @@ var inputFormat = input.createInputFormat(function(fileName) {
 
     var data = fs.readFileSync(fileName, 'ascii');
     if(data) {
-        var lines = data.toString().split(' ');
-        for(line in lines) {
-            inputSplits.push(new InputSplit(line));
+        var chunks = data.toString().split(' ');
+        for(var i = 0; i < chunks.length; ++i) {
+            inputSplits.push(new InputSplit(chunks[i]));
         }
     }
 

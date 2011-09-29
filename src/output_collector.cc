@@ -18,11 +18,15 @@ void OutputCollector::Initialize(Handle<Object> target) {
     NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "values", Values);
     NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "join", Join);
     NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "keys", Keys);
+    NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "size", Size);
+    NODE_SET_PROTOTYPE_METHOD(OutputCollector::constructor_template, "toArray", ToArray);
     target->Set(String::NewSymbol("OutputCollector"), OutputCollector::constructor_template->GetFunction());
     target->Set(String::New("collect"), FunctionTemplate::New(Collect)->GetFunction());
     target->Set(String::New("values"), FunctionTemplate::New(Values)->GetFunction());
     target->Set(String::New("join"), FunctionTemplate::New(Join)->GetFunction());
     target->Set(String::New("keys"), FunctionTemplate::New(Keys)->GetFunction());
+    target->Set(String::New("size"), FunctionTemplate::New(Size)->GetFunction());
+    target->Set(String::New("toArray"), FunctionTemplate::New(ToArray)->GetFunction());
 }
 
 Handle<Value> OutputCollector::New(const Arguments& args) {
@@ -52,12 +56,13 @@ Handle<Value> OutputCollector::Values(const Arguments& args) {
 
     std::string key = V8StringToStdString(args[0]);
     OutputCollectorMap* map = outputCollector->map();
+    std::pair<OutputCollectorMap::iterator, OutputCollectorMap::iterator> ret; 
     OutputCollectorMap::iterator itr;
-    itr = map->find(key);
+    ret = map->equal_range(key);
 
     Local<Array> array = Array::New();
     int i = 0;
-    for(itr, i; itr != map->end(); ++itr, ++i) {
+    for(itr = ret.first, i; itr != ret.second; ++itr, ++i) {
         array->Set(Integer::New(i), String::New((*itr).second.c_str()));
     }
 
@@ -97,3 +102,30 @@ Handle<Value> OutputCollector::Keys(const Arguments& args) {
     return scope.Close(array);
 }
 
+Handle<Value> OutputCollector::Size(const Arguments& args) {
+    HandleScope scope;
+
+    OutputCollector* outputCollector = ObjectWrap::Unwrap<OutputCollector>(args.This());
+    OutputCollectorMap* map = outputCollector->map();
+    Local<Value> size = Integer::New(map->size());
+
+    return scope.Close(size);
+}
+
+Handle<Value> OutputCollector::ToArray(const Arguments& args) {
+    HandleScope scope;
+
+    OutputCollector* outputCollector = ObjectWrap::Unwrap<OutputCollector>(args.This());
+    OutputCollectorMap* map = outputCollector->map();
+    Local<Array> array = Array::New();
+    int i = 0;
+
+    for(OutputCollectorMap::iterator itr = map->begin(); itr != map->end(); ++itr) {
+        std::string key = (*itr).first;
+        std::string value = (*itr).second;
+        array->Set(Integer::New(i), String::New((key + " : " + value).c_str()));
+        i++;
+    }
+
+    return scope.Close(array);
+}
