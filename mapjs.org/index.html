@@ -14,6 +14,7 @@
         <li><a href="https://github.com/yanzhengli/map.js/wiki">Wiki</a></li>
         <li><a href="http://www.mapjs.org/#about">About</a></li>
         <li><a href="#tutorial">Docs</a></li>
+        <li><a href=""></a></li>
     </ul>
 </div>
 <div id="main_container">
@@ -53,14 +54,14 @@
         <span class="code_keyword">var</span> inputFormat = input.createInputFormat(<span class="code_keyword">function</span>(fileName) {<br/>
         &nbsp;&nbsp;&nbsp;&nbsp;<span class="code_keyword">var</span> inputSplits = [];<br/>
         <br/>
-            <span class="code_keyword">var</span> data = fs.readFileSync(fileName, <span class="code_string">'ascii'</span>);<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;if(data) {<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_keyword">var</span> chunks = data.toString().split(<span class="code_string">
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code_keyword">var</span> data = fs.readFileSync(fileName, <span class="code_string">'ascii'</span>);<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(data) {<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_keyword">var</span> chunks = data.toString().split(<span class="code_string">
                 ' '</span>);<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(<span class="code_keyword">var</span> i = 0; i < chunks.length; ++i) {<br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inputSplits.push(<span class="code_keyword">new</span> InputSplit(chunks[i]));<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-            }<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(<span class="code_keyword">var</span> i = 0; i < chunks.length; ++i) {<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inputSplits.push(<span class="code_keyword">new</span> InputSplit(chunks[i]));<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
         <br/>
             &nbsp;&nbsp;&nbsp;&nbsp;<span class="code_keyword">return</span> inputSplits;<br/>
         });<br/>
