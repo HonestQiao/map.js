@@ -6,6 +6,7 @@
 #include "output_collector.h"
 #include "jobconf.h"
 #include "jobclient.h"
+#include "async.h"
 
 using namespace mapjs;
 
@@ -18,4 +19,5 @@ init(Handle<Object> target) {
     OutputCollector::Initialize(target);
     JobConf::Initialize(target);
     JobClient::Initialize(target);
+    Async::Initialize(target);
 }
